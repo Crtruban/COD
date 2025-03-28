@@ -16,7 +16,7 @@
 	} = $props();
 
 	let collapse = $state(false);
-	let spellCollapse = $state(false)
+	let spellCollapse = $state(false);
 
 	let adjustableHealth = $state(npc.hp);
 
@@ -31,22 +31,23 @@
 	}
 </script>
 
-<Card>
-	<Card >
+<Card class="">
+	<Card>
 		<button onclick={() => (collapse = !collapse)}>
-		<h5
-			class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+			<h5
+				class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+			>
+				{npc.name}
+				{index + 1}
+			</h5></button
 		>
-			{npc.name}
-			{index + 1}
-		</h5></button>
 		{#if npc.img !== ""}
 			<div class="flex justify-center">
 				<img
 					src={npc.img}
 					alt="Monster Pic"
 					class="object-cover rounded-lg h-48 w-48"
-									/>
+				/>
 			</div>
 		{/if}
 		<span>
@@ -138,32 +139,45 @@
 							{/if}
 						{/each}
 						{#if npc.spells}
-							<Card ><button onclick={() => (spellCollapse = !spellCollapse)}>Spell List</button>
+							<Card
+								><button
+									onclick={() =>
+										(spellCollapse = !spellCollapse)}
+									>Spell List</button
+								>
 								{#if spellCollapse}
-								{#each npc.spells as spell}
-									<Card
-										>{spell.name.toUpperCase()}
-										{console.log(spell)}
-										{#each Object.entries(spell) as [name, spellProp]}
-											{#if name == "damage"}
-												<b>{name?.toUpperCase()}:</b><Card>
-												{#each Object.entries(spellProp as {}) as [name, damageProp]}
-												
-													{name?.toUpperCase()}:
-													{damageProp}
-												
-												{/each}</Card>
-											{/if}
-											{#if name != "name" && name != "damage"}
-												<b>{name?.toUpperCase()}:</b>
-												{spellProp}
-											{/if}
-										{/each}</Card
-									>
-								{/each}
+									{#each npc.spells as spell}
+										<Card>
+											<h3
+												class="text-xl font-bold text-black-600"
+											>
+												{spell.name.toUpperCase()}
+											</h3>
+											{#each Object.entries(spell) as [name, spellProp]}
+												<div class="ml-4 mt-2">
+													{#if name == "damage"}
+														<b
+															>{name?.toUpperCase()}:</b
+														><Card>
+															{#each Object.entries(spellProp as {}) as [name, damageProp]}
+																{name?.toUpperCase()}:
+																{damageProp}
+															{/each}</Card
+														>
+													{/if}
+													{#if name != "name" && name != "damage"}
+														<b
+															>{name?.toUpperCase()}:</b
+														>
+														{spellProp}
+													{/if}
+												</div>
+											{/each}
+										</Card>
+									{/each}
 								{/if}
 							</Card>
-							{/if}
+						{/if}
 					{/if}
 				</ul>
 			</div>
