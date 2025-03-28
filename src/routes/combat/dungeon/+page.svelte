@@ -3,9 +3,8 @@
     import Monster from "$lib/components/ui/monster/monster.svelte";
     import { mosnterList } from "$lib/objects/monsterList/monsterList";
     let npcList = $state([
-        mosnterList.skeletonSoldier,
-        mosnterList.skeletonKnight,
-        mosnterList.skeletonMage,
+        mosnterList.rottingSpiderSwarm,
+        mosnterList.rottingSpiderSwarm,
     ]);
 
     let selectedMonster = $state(null);

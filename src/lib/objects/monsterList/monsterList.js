@@ -216,4 +216,37 @@ export const mosnterList = {
         condition_immunities: ["Charmed", "Exhaustion", "Poisoned"],
         spells: [], // Ghouls typically don't cast spells
     },
+    rottingSpiderSwarm: {
+        name: "Rotting Spider Swarm",
+        img: "/rottingSpiderSwarm.png", // Replace with the actual image path
+        hp: 36, // Swarm creatures typically have lower HP
+        ac: 12, // Natural armor
+        description: "A writhing mass of undead spiders, their decaying bodies animated by dark magic. The swarm moves as one, overwhelming its prey with venomous bites and necrotic energy.",
+        movement: "20 Ft., climb 20 Ft.",
+        saving_throws: "Dex +3, Con +2",
+        senses: "darkvision 60ft, passive perception 10",
+        actions: {
+            Bite: {
+                type: "Melee",
+                Attack: "+5",
+                damage: "4d4 (10) piercing damage plus 2d6 (7) necrotic damage",
+                description: "The swarm bites all creatures in its space, dealing piercing and necrotic damage.",
+            },
+            Swarm: {
+                description: "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny spider. The swarm can't regain hit points or gain temporary hit points.",
+            },
+        },
+        abilities: {
+            UndeadFortitude: {
+                description: "If damage reduces the swarm to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the swarm drops to 1 hit point instead.",
+            },
+            Necrotic_Aura: {
+                description: "At the start of the swarm's turn, all creatures within 5 feet of it take 1d6 necrotic damage.",
+            },
+        },
+        resistances: ["Necrotic", "Piercing", "Slashing"],
+        immunities: ["Poison"],
+        condition_immunities: ["Charmed", "Exhaustion", "Frightened", "Paralyzed", "Petrified", "Poisoned"],
+        spells: [], // Swarms typically don't cast spells
+    },
 }
