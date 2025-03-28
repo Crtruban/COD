@@ -117,7 +117,7 @@
 >
 <Dropdown bind:open={showDropdown[1]} class="dropdown">
     {#each sections as section}
-        <DropdownItem href="/baseDungeon/{section.url}" on:click={() => (showDropdown[1] = false)} >
+        <DropdownItem href="/combat/{section.url}" on:click={() => (showDropdown[1] = false)} >
             <section.icon class="w-6 h-6" />
             {section.title}
         </DropdownItem>

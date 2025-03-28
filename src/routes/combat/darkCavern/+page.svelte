@@ -1,0 +1,1 @@
+The only potential combat here is from the skeletons. See Glittering Cavern.
