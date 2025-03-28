@@ -86,14 +86,14 @@
             The trap is triggered when a creature that is not undead that
             touches the door, an attempt to pick the door’s lock fails, or the
             door is attacked. Spectral tentacles shoot out of the door and grab
-            for the creature triggered it. That creature must succeed on a DC 15
+            for the creature triggered it. That creature must succeed on a DC 12
             Dexterity saving throw or it is restrained by the tentacles. The
             tentacles can restrain up to five creatures at once.<br />
-            If the tentacles restrain a creature, that creature takes 9 (3d6) necrotic
+            If the tentacles restrain a creature, that creature takes 3 (1d6) necrotic
             damage at the start of its turn as long as it is restrained in this way.
             The creature can repeat the saving throw at the end of its turns, ending
             the restrained condition on a success.<br />
-            If the tentacles restrain no creature or take radiant damage (AC 15,
+            If the tentacles restrain no creature or take radiant damage (AC 12,
             +2 to all saves), they disappear until the trap is triggered again.
           </li>
         </ul>

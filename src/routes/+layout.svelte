@@ -8,6 +8,8 @@
         HandPlatter,
         Bone,
         Shield,
+        SwordIcon,
+        SkullIcon,
         Droplet,
         Sparkle,
     } from "@lucide/svelte/icons";
@@ -92,8 +94,7 @@
     {#each chapters as chapter, index}
         <a class="drop-down-hover" href="/{chapter.url}">{chapter.title}</a>
     {/each}
-    <span class="drop-down-hover" 
-        >Zaldara's Dungeon<ChevronDownOutline
+    <span class="drop-down-hover"><SkullIcon style={"color: black"}/>Zaldara's Dungeon<ChevronDownOutline
             class="w-6 h-6 ms-2 text-black dark:text-white"
         /></span
     >
@@ -105,8 +106,9 @@
             </DropdownItem>
         {/each}
     </Dropdown>
-    <span class="drop-down-hover" 
-    >Combat Encounters<ChevronDownOutline
+
+    <span class="drop-down-hover"><SwordIcon style={"color: black"}/>
+    Combat Encounters<ChevronDownOutline
         class="w-6 h-6 ms-2 text-black dark:text-white"
     /></span
 >
