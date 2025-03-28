@@ -45,9 +45,8 @@
 				<img
 					src={npc.img}
 					alt="Monster Pic"
-					class="object-cover rounded-lg"
-					style={"width:40% maxWidth: 100px"}
-				/>
+					class="object-cover rounded-lg h-48 w-48"
+									/>
 			</div>
 		{/if}
 		<span>
@@ -144,6 +143,7 @@
 								{#each npc.spells as spell}
 									<Card
 										>{spell.name.toUpperCase()}
+										{console.log(spell)}
 										{#each Object.entries(spell) as [name, spellProp]}
 											{#if name == "damage"}
 												<b>{name?.toUpperCase()}:</b><Card>
