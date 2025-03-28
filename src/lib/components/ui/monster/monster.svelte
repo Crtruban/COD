@@ -31,7 +31,7 @@
 	}
 </script>
 
-<Card class="">
+<Card>
 	<Card>
 		<button onclick={() => (collapse = !collapse)}>
 			<h5
