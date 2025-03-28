@@ -177,5 +177,43 @@ export const mosnterList = {
         condition_immunities: ["Blinded", "Charmed", "Deafened", "Exhaustion", "Frightened", "Grappled", "Paralyzed", "Petrified", "Poisoned", "Prone", "Restrained", "Unconscious"],
         spells: [], // Glittering Oozes typically don't cast spells
     },
-
+    ghoul: {
+        name: "Enhanced Ghoul",
+        img: "/enhancedGhoul.png", // Replace with the actual image path
+        hp: 52, // Increased hit points for a tougher challenge
+        ac: 14, // Natural armor
+        description: "A more powerful and cunning undead creature, these ghouls are faster, stronger, and more dangerous than their lesser kin. They hunger for the flesh of the living and are driven by dark magic.",
+        movement: "30 Ft.",
+        saving_throws: "Dex +3, Con +4",
+        senses: "darkvision 60ft, passive perception 10",
+        actions: {
+            Multiattack: {
+                description: "The ghoul makes two attacks: one with its claws and one with its bite.",
+            },
+            Bite: {
+                type: "Melee",
+                Attack: "+5",
+                damage: "2d6+2 (9) piercing damage",
+                description: "The ghoul bites its target, dealing piercing damage.",
+            },
+            Claws: {
+                type: "Melee",
+                Attack: "+5",
+                damage: "2d4+2 (7) slashing damage",
+                description: "If the target is a creature other than an undead, it must succeed on a DC 12 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+            },
+        },
+        abilities: {
+            TurnResistance: {
+                description: "The ghoul has advantage on saving throws against effects that turn undead.",
+            },
+            UndeadFortitude: {
+                description: "If damage reduces the ghoul to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the ghoul drops to 1 hit point instead.",
+            },
+        },
+        resistances: ["Necrotic"],
+        immunities: ["Poison"],
+        condition_immunities: ["Charmed", "Exhaustion", "Poisoned"],
+        spells: [], // Ghouls typically don't cast spells
+    },
 }
