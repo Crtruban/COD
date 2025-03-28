@@ -29,7 +29,7 @@
 
     let mapHtml =
         '<img class="mapModal" alt="Zaldara\'s Dungeon Map" src={"/map.png"} />';
-    let showDropdown = $state(false); // State to toggle dropdown visibility
+    let showDropdown = $state([false, false]); // State to toggle dropdown visibility
 
     let sections = [
         {
@@ -89,10 +89,6 @@
             title: "Introduction",
             url: "intro",
         },
-        {
-            title: "Combat Encounters",
-            url: "combat",
-        },
     ];
 </script>
 
@@ -105,14 +101,27 @@
             class="w-6 h-6 ms-2 text-black dark:text-white"
         /></span
     >
-    <Dropdown bind:open={showDropdown} class="dropdown">
+    <Dropdown bind:open={showDropdown[0]} class="dropdown">
         {#each sections as section}
-            <DropdownItem href="/baseDungeon/{section.url}" on:click={() => (showDropdown = false)} >
+            <DropdownItem href="/baseDungeon/{section.url}" on:click={() => (showDropdown[0] = false)} >
                 <section.icon class="w-6 h-6" />
                 {section.title}
             </DropdownItem>
         {/each}
     </Dropdown>
+    <span class="drop-down-hover" 
+    >Combat Encounters<ChevronDownOutline
+        class="w-6 h-6 ms-2 text-black dark:text-white"
+    /></span
+>
+<Dropdown bind:open={showDropdown[1]} class="dropdown">
+    {#each sections as section}
+        <DropdownItem href="/baseDungeon/{section.url}" on:click={() => (showDropdown[1] = false)} >
+            <section.icon class="w-6 h-6" />
+            {section.title}
+        </DropdownItem>
+    {/each}
+</Dropdown>
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <!-- svelte-ignore a11y_missing_attribute -->
