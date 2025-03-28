@@ -1,6 +1,5 @@
 <script lang="ts">
     import "../app.css";
-    import "../../static/shared.css";
     import {
         Columns4,
         Mountain,
