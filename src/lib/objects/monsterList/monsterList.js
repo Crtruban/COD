@@ -1,3 +1,4 @@
+import { spellList } from "../spellList/spellList"
 export const mosnterList = {
     skeletonSoldier: {
         name: "Skeleton Soldier",
@@ -46,6 +47,6 @@ export const mosnterList = {
             },
         },
         resistances: ["Piercing", "Slashing"],
-        spells: [],
+        spells: [spellList.fireBolt, spellList.mageArmor, spellList.shield],
     }
 }
