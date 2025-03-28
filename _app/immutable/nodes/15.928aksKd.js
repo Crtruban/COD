@@ -1,1 +1,0 @@
-import"../chunks/CWj6FrbW.js";import"../chunks/69_IOA4Y.js";import{n as e}from"../chunks/CfYzEQS6.js";import{t,a as r}from"../chunks/DJnApY8F.js";var l=t('<h1>Blog</h1> <ul><li><a href="/blog/one">one</a></li> <li><a href="/blog/two">two</a></li> <li><a href="/blog/three">three</a></li></ul>',1);function f(o){var a=l();e(2),r(o,a)}export{f as component};
