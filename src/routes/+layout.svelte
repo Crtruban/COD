@@ -134,6 +134,8 @@
         <MapIcon style={"color: black"} />
         <span>Dungeon Map</span>
     </a>
+
+    <a class="drop-down-hover" href="/end">Wrapup</a>
 </nav>
 
 <Modal
