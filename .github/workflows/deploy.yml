@@ -30,6 +30,7 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
+          echo ${BASE_PATH}
           export PATH=$(npm bin):$PATH
           npm run build
 
