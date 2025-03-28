@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark light" />
+		
+		<link rel="modulepreload" href="/_app/immutable/entry/start.pyn8QB6n.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CQgYcRib.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CfYzEQS6.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/DcZ0jNvw.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/xxXo5VNe.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.WdBFLF8t.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CxK8GXw3.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/DemEEBQY.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/DJnApY8F.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CWj6FrbW.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/Kmj5Zsvt.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BYWjiJVV.js">
+
+		<!-- duplication with svelte.dev/static/shared.css needed, else styles aren't applied during local dev -->
+		<link rel="stylesheet" href="/shared.css" />
+	</head>
+	<body>
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_1qvf38e = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.pyn8QB6n.js"),
+						import("/_app/immutable/entry/app.WdBFLF8t.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+
+		<script>
+			const theme = new URL(window.location).searchParams.get('theme');
+
+			document.documentElement.classList.remove('light', 'dark');
+			document.documentElement.classList.add(theme || 'light');
+		</script>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+import"../chunks/CWj6FrbW.js";import"../chunks/69_IOA4Y.js";import{t as m,a as i}from"../chunks/DJnApY8F.js";import{a}from"../chunks/CROgWhsl.js";var p=m("<img>");function f(r){let o="Camryn",e="tutorial.gif";var t=p();a(t,"src",e),a(t,"alt",`${o} dances`),i(r,t)}export{f as component};
