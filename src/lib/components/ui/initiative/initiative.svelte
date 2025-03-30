@@ -4,6 +4,8 @@
     import InitiativeChip from "./initiative_chip.svelte";
     import { mosnterList } from "$lib/objects/monsterList/monsterList";
     import type { Entity } from "$lib/objects/monsterList/entity";
+    import { ArrowDown, ArrowUp, XCircleIcon } from "@lucide/svelte/icons";
+    import Button from "../button/button.svelte";
 
     let entityList: Entity[] = $state([
         {
@@ -27,23 +29,27 @@
     ]);
 
     const onChange = (newEntity: Entity) => {
-        let newList = []
-        console.table(entityList)
-        entityList.map(x => newList.push(x));
-        newList.push({...newEntity, id: crypto.randomUUID(), initiative: newInitiative});
+        let newList = [];
+        console.table(entityList);
+        entityList.map((x) => newList.push(x));
+        newList.push({
+            ...newEntity,
+            id: crypto.randomUUID(),
+            initiative: newInitiative,
+        });
         entityList = [...newList];
         newInitiative = 0;
-        console.table(entityList)
+        console.table(entityList);
     };
 
     let newInitiative: number = $state(0);
 
     // Function to move the last entry to the top
-    const moveLastToTop = () => {
+    const moveFirstToBottom = () => {
         let newList: any[] = [];
-        entityList.map(x => newList.push(x));
+        entityList.map((x) => newList.push(x));
 
-        if(newList.length === 0) return; // Prevents error when list is empty
+        if (newList.length === 0) return; // Prevents error when list is empty
         const lastEntity = newList.pop(); // Remove the last element
         if (lastEntity) {
             newList.unshift(lastEntity); // Add it to the beginning
@@ -53,7 +59,7 @@
     };
 
     // Function to move the first entry to the bottom
-    const moveFirstToBottom = () => {
+    const moveLastToTop = () => {
         console.log("moveLastToTop", entityList);
         const firstEntity = entityList.shift(); // Remove the first element
         if (firstEntity) {
@@ -61,113 +67,75 @@
         }
         console.log("moveLastToTop", entityList);
     };
-
-    let mouseYCoordinate: any = null; // pointer y coordinate within client
-    let distanceTopGrabbedVsPointer: any = null;
-
-    let draggingItem: any = null;
-    let draggingItemId: any = null;
-    let draggingItemIndex: any = null;
-
-    let hoveredItemIndex = null;
-
-    // $effect: {
-    //     // prevents the ghost flickering at the top
-    //     if (mouseYCoordinate == null || mouseYCoordinate == 0) {
-    //         // showGhost = false;
-    //     }
-    // }
-
-    // $effect: {
-    //     if (
-    //         draggingItemIndex != null &&
-    //         hoveredItemIndex != null &&
-    //         draggingItemIndex != hoveredItemIndex
-    //     ) {
-    //         // swap items
-    //         [entityList[draggingItemIndex], entityList[hoveredItemIndex]] = [
-    //             entityList[hoveredItemIndex],
-    //             entityList[draggingItemIndex],
-    //         ];
-
-    //         // balance
-    //         draggingItemIndex = hoveredItemIndex;
-    //     }
-    // }
-
-    let container = null;
 </script>
 
 <!-- HTML -->
-<Card class="flexbox w-[450px] min-h-[50px]">
-    <div class="p-[5%]">
-        <span class="flex">
-            <h2 class="font-bold flex justify-center">
-                Initaive Tracker
-            </h2>
-            <button onclick={moveLastToTop}>Next</button>
-            <!-- <button onclick={moveFirstToBottom}>Previous</button> -->
-            </span
+<Card class="grid grid-cols-4 gap-4 w-[450px] min-h-[50px]">
+    <div class="col-span-4 p-[5%]">
+        <!-- Header Div -->
+        <h2 class="col-span-2 font-bold flex justify-center">
+            Initiative Tracker
+        </h2>
+    </div>
+    <div class="col-span-4 p-[5%] flex justify-center items-center">
+        <!-- Header Div -->
+        <Button
+            onclick={() => {
+                entityList = [...entityList].sort(
+                    (a, b) => b.initiative - a.initiative,
+                );
+            }}
+            class="font-bold">Sort Initiatives</Button
         >
-        <span class="flex justify-right">
+    </div>
+    <div class="col-span-4">
+        <span class="flex justify-right pl-[6.5%] col-span-3">
             <input
                 class="flex w-[15%] h-[50px] text-xl text-center"
                 value={newInitiative}
-                onchange={(e: Event) => newInitiative = parseInt((e.target as HTMLInputElement)?.value || '0', 10)}
+                onchange={(e: Event) =>
+                    (newInitiative = parseInt(
+                        (e.target as HTMLInputElement)?.value || "0",
+                        10,
+                    ))}
             />
             &nbsp; &nbsp;
             <EntitySelector {onChange} />
         </span>
     </div>
-    <div bind:this={container}>
-        {#if mouseYCoordinate}
-            <div
-                class="item ghost"
-                style="top: {mouseYCoordinate +
-                    distanceTopGrabbedVsPointer}px; background: {draggingItem.value};"
-            >
-                {draggingItem.value}
-            </div>
+    <div class="flex">
+        <!-- Left Section: Initiative Chips -->
+        <div class="flex-1">
+            {#each entityList as entity: { name: "", initiative: -1, id: "" }, index}
+                {#key entity.id}
+                    <span
+                        role="listitem"
+                        class="flex item p-2 bg-gray-100 rounded-lg mb-2 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                    >
+                        <InitiativeChip {entity} />
+                        <XCircleIcon class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-4"
+                        onclick={() => {
+                            // Remove the entity from the list
+                            entityList = entityList.filter((_, i) => i !== index);
+                        }} />
+                    </span>
+                {/key}
+            {/each}
+        </div>
+
+        <!-- Right Section: Arrows -->
+         {#if entityList.length > 0}
+        <div class="flex flex-col items-center justify-start gap-4 ml-14 mt-10">
+            <ArrowUp
+                class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
+                onclick={moveLastToTop}
+            />
+            <ArrowDown
+                class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
+                onclick={moveFirstToBottom}
+            />
+        </div>
         {/if}
-        {#each entityList as entity: {name: "", initiaitve: -1, id: ""}, index}
-        {#key entity.id}
-            <span
-                role="listitem"
-                class="item {draggingItemId == entity.id ? 'invisible' : ''}"
-                draggable="true"
-                ondragstart={(e) => {
-                    mouseYCoordinate = e.clientY;
-                    //console.log('dragstart', mouseYCoordinate);
-
-                    draggingItem = entity;
-                    draggingItemIndex = index;
-                    draggingItemId = entity.id;
-
-                    distanceTopGrabbedVsPointer =
-                        (e.target as HTMLElement).getBoundingClientRect().y -
-                        e.clientY;
-                }}
-                ondrag={(e) => {
-                    mouseYCoordinate = e.clientY;
-                    //console.log('drag', mouseYCoordinate);
-                }}
-                ondragover={(e) => {
-                    hoveredItemIndex = index;
-                }}
-                ondragend={(e) => {
-                    //console.log('dragend', mouseYCoordinate);
-                    //console.log('\n');
-
-                    // mouseYCoordinate = e.clientY;
-
-                    draggingItemId = null; // makes item visible
-                    hoveredItemIndex = null; // prevents instant swap
-                }}
-            >
-                <InitiativeChip {entity} />
-            </span>
-            {/key}
-        {/each}
     </div>
 </Card>
 
