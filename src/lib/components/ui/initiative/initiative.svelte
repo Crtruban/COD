@@ -51,7 +51,7 @@
 </script>
 
 <!-- HTML -->
-<Card class="grid grid-cols-4 gap-4 w-[550px] min-h-[50px]">
+<Card class="cursor-default grid grid-cols-4 gap-4 w-[550px] min-h-[50px]">
     <div class="col-span-4 p-[5%]">
         <!-- Header Div -->
         <h2 class="col-span-2 font-bold flex justify-center">

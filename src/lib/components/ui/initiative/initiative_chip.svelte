@@ -32,13 +32,15 @@
 <div class="col-span-3 flex items-center justify-center gap-4 pb-5 pl-8">
     <!-- Circle Image -->
     {#if image !== ""}
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
         <img
             onclick={() => {
                 showModal = true;
             }}
             src={image}
             alt={name ? `${name}'s image` : "Image of the entity"}
-            class="w-20 h-20 rounded-full border border-gray-300 transition-transform duration-300 ease-in-out hover:scale-150"
+            class="cursor-pointer w-20 h-20 rounded-full border border-gray-300 transition-transform duration-300 ease-in-out hover:scale-150"
         />
     {/if}
 

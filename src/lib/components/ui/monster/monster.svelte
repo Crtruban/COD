@@ -50,21 +50,20 @@
 				/>
 			</div>
 		{/if}
-		<span>
+		<span class="text-center flex items-center justify-center p-2">
 			Health: {adjustableHealth} / {npc.hp} ({Math.floor(
 				(adjustableHealth / npc.hp) * 100,
 			)}%)
 		</span>
-		<div class="">
 			<div class="text-center">
 				<h6
 					class="text-lg font-semibold text-gray-900 dark:text-white"
 				>
 					MAX HP
 				</h6>
-				<p class="font-normal text-gray-700 dark:text-gray-400">
+				<span class="font-normal text-gray-700 dark:text-gray-400">
 					{npc.hp}
-				</p>
+				</span>
 				<h6
 					class="text-lg font-semibold text-gray-900 dark:text-white"
 				>
@@ -117,7 +116,7 @@
 				</p>
 			</div>
 		</div>
-	</div>
+
 	</Card>
 	<br />
 	{#if collapse}
