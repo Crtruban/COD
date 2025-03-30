@@ -19,7 +19,7 @@
             initiative: newInitiative,
         });
         entityList = [...newList];
-        newInitiative = 0;
+        newInitiative = null;
         console.table(entityList);
     };
 
