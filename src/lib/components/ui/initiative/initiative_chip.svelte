@@ -1,8 +1,10 @@
 <script lang="ts">
     import { mosnterList } from "$lib/objects/monsterList/monsterList";
+    import entityCard from "../monster/entityCard.svelte";
     // import { Modal } from "flowbite-svelte";
     import { Modal } from "../modal";
     import Draggable from "../draggable/draggable.svelte";
+    import EntityCard from "../monster/entityCard.svelte";
 
     // Destructs
     let { entity = { name: "", initiative: -1 } } = $props();
@@ -70,11 +72,11 @@
                 {name}
             </h2>
         {/snippet}
-    
-        <img
+        <EntityCard npc={foundEntity}/>
+        <!-- <img
             src={image}
             alt={name ? `${name}'s image` : "Image of the entity"}
-               />
+               /> -->
     </Modal>
 
 </Draggable>

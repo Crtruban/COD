@@ -7,7 +7,7 @@
     import { ArrowDown, ArrowUp, XCircleIcon } from "@lucide/svelte/icons";
     import Button from "../button/button.svelte";
 
-    let entityList: Entity[] = $state([]);
+    let entityList: Entity[] = $state([mosnterList.fleshGolem]);
 
     const onChange = (newEntity: Entity) => {
         let newList = [];
