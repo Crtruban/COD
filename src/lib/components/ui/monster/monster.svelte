@@ -31,7 +31,7 @@
 	}
 </script>
 
-<Card>
+<Card class="max-w-[350px] min-h-[300px]">
 	<Card>
 		<button onclick={() => (collapse = !collapse)}>
 			<h5
@@ -55,6 +55,69 @@
 				(adjustableHealth / npc.hp) * 100,
 			)}%)
 		</span>
+		<div class="">
+			<div class="text-center">
+				<h6
+					class="text-lg font-semibold text-gray-900 dark:text-white"
+				>
+					MAX HP
+				</h6>
+				<p class="font-normal text-gray-700 dark:text-gray-400">
+					{npc.hp}
+				</p>
+				<h6
+					class="text-lg font-semibold text-gray-900 dark:text-white"
+				>
+					CURRENT HP
+				</h6>
+				<input
+					type="number"
+					bind:value={adjustableHealth}
+					class="text-center border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+				/>
+				<div class="flex justify-center gap-2 mt-2">
+					<input
+						type="number"
+						bind:value={appliedDmgHL}
+						class="text-center border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+					/>
+					<button
+						onclick={applyDamage}
+						class="px-2 py-1 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
+					>
+						Damage
+					</button>
+					<button
+						onclick={applyHeal}
+						class="px-2 py-1 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
+					>
+						Heal
+					</button>
+				</div>
+			</div>
+			<div>
+			<div class="text-center">
+				<h6
+					class="text-lg font-semibold text-gray-900 dark:text-white"
+				>
+					AC
+				</h6>
+				<p class="font-normal text-gray-700 dark:text-gray-400">
+					{npc.ac}
+				</p>
+			</div>
+			<div class="text-center">
+				<h6
+					class="text-lg font-semibold text-gray-900 dark:text-white"
+				>
+					MV
+				</h6>
+				<p class="font-normal text-gray-700 dark:text-gray-400">
+					{npc.movement}
+				</p>
+			</div>
+		</div>
+	</div>
 	</Card>
 	<br />
 	{#if collapse}
