@@ -67,27 +67,27 @@
     >
       <!-- Dropdown Menu -->
       <div class="mb-4 min-w-[400px]">
-        <h1 class="pt-5 text-center font-bold text-xl">Add an Entity to Combat</h1>
-        <div class="flex  justify-center">
+        <h1 class="pt-5 text-center font-bold text-xl">
+          Add an Entity to Combat
+        </h1>
+        <div class="flex justify-center">
           <EntitySelector onChange={newOnChange} />
         </div>
       </div>
       <div class="flex flex-wrap gap-4">
         {#each npcList as npc, index}
-          <Draggable>
-            {#key npc.id}
-              <div>
-                <button
-                  onclick={() => {
-                    npcList = npcList.filter((_, i) => i !== index);
-                  }}
-                >
-                  Remove Monster</button
-                >
-                <Monster {npc} {index} />
-              </div>
-            {/key}</Draggable
-          >
+          {#key npc.id}
+            <div>
+              <button
+                onclick={() => {
+                  npcList = npcList.filter((_, i) => i !== index);
+                }}
+              >
+                Remove Monster</button
+              >
+              <Monster {npc} {index} />
+            </div>
+          {/key}
         {/each}
       </div>
     </Card>
