@@ -5,6 +5,7 @@
   import Draggable from "$lib/components/ui/draggable/draggable.svelte";
   import { mosnterList } from "$lib/objects/monsterList/monsterList";
   import EntitySelector from "$lib/components/ui/monster/entity_selector.svelte";
+  import { XCircleIcon } from "@lucide/svelte";
 
   /**
    * @type {any[]}
@@ -78,14 +79,15 @@
         {#each npcList as npc, index}
           {#key npc.id}
             <div>
-              <button
+              <!-- <XCircleIcon
+                class="cursor-pointer justify-right text-red-500 hover:text-red-700 w-6 h-6 ml-4"
                 onclick={() => {
+                  // Remove the entity from the list
                   npcList = npcList.filter((_, i) => i !== index);
                 }}
-              >
-                Remove Monster</button
-              >
-              <Monster {npc} {index} />
+              /> -->
+
+              <Monster {npc} {index} remove={() => {console.log('Here')}} />
             </div>
           {/key}
         {/each}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Card } from "flowbite-svelte";
 	import { slide } from "svelte/transition";
+	import { XCircleIcon } from "@lucide/svelte";
 	let {
 		npc = {
 			img: "",
@@ -13,7 +14,10 @@
 			spells: [],
 		},
 		index = -1,
+		remove = () => {},
 	} = $props();
+
+	const defaultRemove = () => {};
 
 	let collapse = $state(false);
 	let spellCollapse = $state(false);
@@ -35,20 +39,34 @@
 	class="max-w-[350px] min-h-[300px] bg-white dark:bg-gray-800 shadow-lg rounded-lg"
 >
 	<Card>
-		<button onclick={() => (collapse = !collapse)}>
-			<h5
-				class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-			>
-				{npc.name}
-				{index + 1}
-			</h5>
-		</button>
+		<div class="header flex justify-between items-center">
+			<!-- Name and Index -->
+			<div class="flex-grow text-center">
+				<button onclick={() => (collapse = !collapse)}>
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						{npc.name}
+						{index + 1}
+					</h5>
+				</button>
+			</div>
+		
+			<!-- Remove Icon -->
+			{#if remove !== defaultRemove}
+				<XCircleIcon
+					class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-auto"
+					onclick={() => {
+						// Remove the entity from the list
+						remove();
+					}}
+				/>
+			{/if}
+		</div>
 		{#if npc.img !== ""}
 			<div class="flex justify-center bg-cover bg-no-repeat">
 				<img
 					src={npc.img}
 					alt="Monster Pic"
-					class="relative bg-gradient-to-b from-[#996600] to-[#162b4c] cursor-pointer w-48 h-48 rounded border border-gray-300 transition-transform duration-300 ease-in-out hover:scale-150"
+					class="relative object-contain bg-white cursor-pointer w-48 h-48 rounded border border-gray-300 transition-transform duration-300 ease-in-out hover:scale-150"
 				/>
 			</div>
 		{/if}
@@ -58,19 +76,26 @@
 			)}%)
 		</span>
 		<div class="text-center">
-			<div class="flex">
-				<h6 class="text-lg font-semibold text-gray-900 dark:text-white">
-					MAX HP:
-				</h6>
-				<span class="font-normal text-gray-700 dark:text-gray-400">
-					{npc.hp}
-				</span>
-				<h6 class="text-lg font-semibold text-gray-900 dark:text-white">
-					AC:
-				</h6>
-				<span class="font-normal text-gray-700 dark:text-gray-400">
-					{npc.ac}
-				</span>
+			<div class="flex justify-center items-center gap-x-8">
+				<!-- MAX HP -->
+				<div class="flex flex-col items-center">
+					<h6 class="text-lg font-semibold text-gray-900 dark:text-white">
+						MAX HP
+					</h6>
+					<span class="font-normal text-gray-700 dark:text-gray-400">
+						{npc.hp}
+					</span>
+				</div>
+		
+				<!-- AC -->
+				<div class="flex flex-col items-center">
+					<h6 class="text-lg font-semibold text-gray-900 dark:text-white">
+						AC
+					</h6>
+					<span class="font-normal text-gray-700 dark:text-gray-400">
+						{npc.ac}
+					</span>
+				</div>
 			</div>
 			<h6 class="text-lg font-semibold text-gray-900 dark:text-white">
 				CURRENT HP
