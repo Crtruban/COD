@@ -66,23 +66,11 @@
       style={"width:auto; height: auto"}
     >
       <!-- Dropdown Menu -->
-      <div class="mb-4">
-        <EntitySelector onChange={newOnChange} />
-        <select
-          bind:value={selectedMonster}
-          class="border border-gray-300 rounded-lg p-2 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-        >
-          <option value="" disabled selected>Select a Monster</option>
-          {#each monsterOptions as monster}
-            <option value={monster}>{monster.name}</option>
-          {/each}
-        </select>
-        <button
-          onclick={onChange}
-          class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-        >
-          Add Monster
-        </button>
+      <div class="mb-4 min-w-[400px]">
+        <h1 class="pt-5 text-center font-bold text-xl">Add an Entity to Combat</h1>
+        <div class="flex  justify-center">
+          <EntitySelector onChange={newOnChange} />
+        </div>
       </div>
       <div class="flex flex-wrap gap-4">
         {#each npcList as npc, index}

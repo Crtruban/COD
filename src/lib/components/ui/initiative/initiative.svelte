@@ -7,26 +7,7 @@
     import { ArrowDown, ArrowUp, XCircleIcon } from "@lucide/svelte/icons";
     import Button from "../button/button.svelte";
 
-    let entityList: Entity[] = $state([
-        {
-            ...mosnterList.fleshGolem,
-            id: crypto.randomUUID(),
-            value: "Flesh Golem 1",
-            initiative: 10,
-        },
-        {
-            ...mosnterList.zaldara,
-            id: crypto.randomUUID(),
-            value: "Flesh Golem 2",
-            initiative: 12,
-        },
-        {
-            ...mosnterList.skeletonKnight,
-            id: crypto.randomUUID(),
-            value: "Flesh Golem 3",
-            initiative: 8,
-        },
-    ]);
+    let entityList: Entity[] = $state([]);
 
     const onChange = (newEntity: Entity) => {
         let newList = [];
@@ -42,7 +23,7 @@
         console.table(entityList);
     };
 
-    let newInitiative: number = $state(0);
+    let newInitiative: any = $state();
 
     // Function to move the last entry to the top
     const moveFirstToBottom = () => {
@@ -91,16 +72,28 @@
     <div class="col-span-4">
         <span class="flex justify-right pl-[6.5%] col-span-3">
             <input
-                class="flex w-[15%] h-[50px] text-xl text-center"
-                value={newInitiative}
-                onchange={(e: Event) =>
-                    (newInitiative = parseInt(
-                        (e.target as HTMLInputElement)?.value || "0",
-                        10,
-                    ))}
-            />
+            class="flex w-[15%] h-[50px] text-xl text-center"
+            value={newInitiative}
+            type="number"
+            max="99"
+            min="0"
+            oninput={(e: Event) => {
+                let inputElement = e.target as HTMLInputElement;
+                if (inputElement.value.length > 2) {
+                    inputElement.value = inputElement.value.slice(0, 2); // Limit to 2 digits
+                }
+                newInitiative = parseInt(inputElement.value || "0", 10);
+            }}
+            onchange={(e: Event) => {
+                let newVal = parseInt((e.target as HTMLInputElement)?.value || "0", 10);
+                if (-1 < newVal && newVal < 100) {
+                    newInitiative = newVal;
+                }
+            }}
+        />
+
             &nbsp; &nbsp;
-            <EntitySelector {onChange} />
+            <EntitySelector {onChange} disabled={newInitiative==null} />
         </span>
     </div>
     <div class="flex">
@@ -113,28 +106,34 @@
                         class="flex item p-2 bg-gray-100 rounded-lg mb-2 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
                         <InitiativeChip {entity} />
-                        <XCircleIcon class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-4"
-                        onclick={() => {
-                            // Remove the entity from the list
-                            entityList = entityList.filter((_, i) => i !== index);
-                        }} />
+                        <XCircleIcon
+                            class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-4"
+                            onclick={() => {
+                                // Remove the entity from the list
+                                entityList = entityList.filter(
+                                    (_, i) => i !== index,
+                                );
+                            }}
+                        />
                     </span>
                 {/key}
             {/each}
         </div>
 
         <!-- Right Section: Arrows -->
-         {#if entityList.length > 0}
-        <div class="flex flex-col items-center justify-start gap-4 ml-12 mt-10">
-            <ArrowUp
-                class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
-                onclick={moveLastToTop}
-            />
-            <ArrowDown
-                class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
-                onclick={moveFirstToBottom}
-            />
-        </div>
+        {#if entityList.length > 0}
+            <div
+                class="flex flex-col items-center justify-start gap-4 ml-12 mt-10"
+            >
+                <ArrowUp
+                    class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
+                    onclick={moveLastToTop}
+                />
+                <ArrowDown
+                    class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
+                    onclick={moveFirstToBottom}
+                />
+            </div>
         {/if}
     </div>
 </Card>

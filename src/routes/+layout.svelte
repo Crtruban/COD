@@ -107,19 +107,9 @@
         {/each}
     </Dropdown>
 
-    <span class="drop-down-hover"><SwordIcon style={"color: black"}/>
-    Combat Encounters<ChevronDownOutline
-        class="w-6 h-6 ms-2 text-black dark:text-white"
-    /></span
->
-<Dropdown bind:open={showDropdown[1]} class="dropdown">
-    {#each sections as section}
-        <DropdownItem href="/combat/{section.url}" on:click={() => (showDropdown[1] = false)} >
-            <section.icon class="w-6 h-6" />
-            {section.title}
-        </DropdownItem>
-    {/each}
-</Dropdown>
+
+    <a class="drop-down-hover" href="/combat"><SwordIcon style={"color: black"}/>Combat Encounters</a>
+    
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <!-- svelte-ignore a11y_missing_attribute -->

@@ -3,7 +3,7 @@
 
     let customEntityName = $state("");
     let monsterOptions = Object.values(mosnterList);
-    let { onChange = () => {}} = $props();
+    let { onChange = () => {}, disabled = false} = $props();
     const isEmptyObject = (obj: object) => Object.keys(obj).length === 0;
 </script>
 
@@ -22,7 +22,7 @@
         {/each}
     </datalist>
     <button
-        disabled={!(!!(customEntityName))}
+        disabled={!(!!(customEntityName)) || disabled}
         onclick={() => {
             let selectedEntity =  { name: customEntityName, id: crypto.randomUUID()}
             onChange(selectedEntity);
