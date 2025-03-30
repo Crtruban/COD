@@ -105,7 +105,7 @@
     </div>
     <div class="flex">
         <!-- Left Section: Initiative Chips -->
-        <div class="flex-1">
+        <div class="flex-1 ml-5">
             {#each entityList as entity: { name: "", initiative: -1, id: "" }, index}
                 {#key entity.id}
                     <span
@@ -125,7 +125,7 @@
 
         <!-- Right Section: Arrows -->
          {#if entityList.length > 0}
-        <div class="flex flex-col items-center justify-start gap-4 ml-28 mt-10">
+        <div class="flex flex-col items-center justify-start gap-4 ml-12 mt-10">
             <ArrowUp
                 class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
                 onclick={moveLastToTop}

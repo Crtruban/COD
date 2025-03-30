@@ -1,14 +1,31 @@
 <script lang="ts">
     import { mosnterList } from "$lib/objects/monsterList/monsterList";
+    // import { Modal } from "flowbite-svelte";
+    import { Modal } from "../modal";
+    import Draggable from "../draggable/draggable.svelte";
+
+    // Destructs
     let { entity = { name: "", initiative: -1 } } = $props();
     let { name = "", initiative = -1 } = entity; // Destructure the entity object
-    function findEntityByName(obj: Record<string, any>, searchName: string): any | null {
-        return Object.values(obj).find(
-            (value) => value.name && value.name.toLowerCase() === searchName.toLowerCase()
-        ) || null;
-    }
-    let foundEntity = findEntityByName(mosnterList, name)
+
+    // Variables
+    let foundEntity = findEntityByName(mosnterList, name);
     let image = foundEntity ? foundEntity.img : "";
+    let showModal = $state(false);
+
+    //Functions
+    function findEntityByName(
+        obj: Record<string, any>,
+        searchName: string,
+    ): any | null {
+        return (
+            Object.values(obj).find(
+                (value) =>
+                    value.name &&
+                    value.name.toLowerCase() === searchName.toLowerCase(),
+            ) || null
+        );
+    }
 </script>
 
 <!-- HTML -->
@@ -16,6 +33,9 @@
     <!-- Circle Image -->
     {#if image !== ""}
         <img
+            onclick={() => {
+                showModal = true;
+            }}
             src={image}
             alt={name ? `${name}'s image` : "Image of the entity"}
             class="w-20 h-20 rounded-full border border-gray-300 transition-transform duration-300 ease-in-out hover:scale-150"
@@ -37,7 +57,34 @@
             value={name}
         />
     </span>
-</div>
+</div> 
+{#if showModal}
+<Draggable>
+  
 
+    <Modal bind:showModal>
+        {#snippet header()}
+            <h2>
+                {name}
+            </h2>
+        {/snippet}
+    
+        <img
+            src={image}
+            alt={name ? `${name}'s image` : "Image of the entity"}
+               />
+    </Modal>
+
+</Draggable>
+{/if}
 <style>
+    /* Custom parchment scroll background */
+    .bg-scroll-parchment {
+        background-image: url("/parchment-texture.jpg"); /* Replace with your parchment texture image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #f5deb3; /* Fallback solid color for parchment */
+        opacity: 1; /* Ensure no transparency */
+    }
 </style>
