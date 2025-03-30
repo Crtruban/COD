@@ -70,7 +70,7 @@
 </script>
 
 <!-- HTML -->
-<Card class="grid grid-cols-4 gap-4 w-[450px] min-h-[50px]">
+<Card class="grid grid-cols-4 gap-4 w-[550px] min-h-[50px]">
     <div class="col-span-4 p-[5%]">
         <!-- Header Div -->
         <h2 class="col-span-2 font-bold flex justify-center">
@@ -125,7 +125,7 @@
 
         <!-- Right Section: Arrows -->
          {#if entityList.length > 0}
-        <div class="flex flex-col items-center justify-start gap-4 ml-14 mt-10">
+        <div class="flex flex-col items-center justify-start gap-4 ml-28 mt-10">
             <ArrowUp
                 class="cursor-pointer w-16 h-16 text-gray-600 hover:text-blue-500 transform hover:scale-125 transition duration-300 ease-in-out"
                 onclick={moveLastToTop}
