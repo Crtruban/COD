@@ -16,6 +16,9 @@ const config: Config = {
 		},
 		extend: {
 			colors: {
+				backgroundImage: {
+					'scroll-parchment': "url('/parchment-texture.jpg')", // Define the custom background
+				  },
 				border: "hsl(var(--border) / <alpha-value>)",
 				input: "hsl(var(--input) / <alpha-value>)",
 				ring: "hsl(var(--ring) / <alpha-value>)",

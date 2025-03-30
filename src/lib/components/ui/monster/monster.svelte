@@ -36,9 +36,8 @@
 </script>
 
 <Card
-	class="max-w-[350px] min-h-[300px] bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+	class="max-w-[350px] min-h-[300px] bg-scroll-parchment bg-cover bg-no-repeat shadow-lg rounded-lg border border-yellow-700"
 >
-	<Card>
 		<div class="header flex justify-between items-center">
 			<!-- Name and Index -->
 			<div class="flex-grow text-center">
@@ -125,5 +124,4 @@
 				</button>
 			</div>
 		</div>
-	</Card>
 </Card>

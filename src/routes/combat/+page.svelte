@@ -5,7 +5,6 @@
   import Draggable from "$lib/components/ui/draggable/draggable.svelte";
   import { mosnterList } from "$lib/objects/monsterList/monsterList";
   import EntitySelector from "$lib/components/ui/monster/entity_selector.svelte";
-  import { XCircleIcon } from "@lucide/svelte";
 
   /**
    * @type {any[]}
@@ -75,7 +74,7 @@
           <EntitySelector onChange={newOnChange} />
         </div>
       </div>
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 justify-center p-4">
         {#each npcList as npc, index}
           {#key npc.id}
             <div>
@@ -87,7 +86,9 @@
                 }}
               /> -->
 
-              <Monster {npc} {index} remove={() => {console.log('Here')}} />
+              <Monster {npc} {index} remove={() => {
+                npcList = npcList.filter((_, i) => i !== index);
+              }} />
             </div>
           {/key}
         {/each}
