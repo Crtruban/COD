@@ -7,13 +7,18 @@
     import EntityCard from "../monster/entityCard.svelte";
 
     // Destructs
-    let { entity = { name: "", initiative: -1 } } = $props();
+    let { entity = { name: "", initiative: -1 }, initiativeChange = () => {} } = $props();
     let { name = "", initiative = -1 } = entity; // Destructure the entity object
 
     // Variables
     let foundEntity = findEntityByName(mosnterList, name);
     let image = foundEntity ? foundEntity.img : "";
     let showModal = $state(false);
+
+    function updateInitiative(newValue: any) {
+        // Update the entity's initiative
+        initiativeChange(newValue);
+    }
 
     //Functions
     function findEntityByName(
@@ -49,7 +54,11 @@
     <!-- Initiative Input -->
     <span>
         <input
-            value={initiative}
+            value={entity.initiative}
+            oninput={(e: Event) => {
+                console.log(e.target.value)
+                console.log(entity.initiative)
+                updateInitiative(parseInt(e.target.value))}}
             class="max-w-[60px] h-[50px] text-xl text-center border border-gray-300 rounded-lg"
         />
     </span>

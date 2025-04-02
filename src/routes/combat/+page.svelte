@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Tabs, TabItem as Tab } from "flowbite-svelte";
+  import { Card,Button,  Tabs, TabItem as Tab } from "flowbite-svelte";
   import Monster from "$lib/components/ui/monster/monster.svelte";
   import Initiative from "$lib/components/ui/initiative/initiative.svelte";
   import Draggable from "$lib/components/ui/draggable/draggable.svelte";
@@ -18,6 +18,14 @@
 
   let selectedMonster = $state(null);
   let monsterOptions = Object.values(mosnterList);
+  let initiativeRef; 
+
+  function pushNpcListToInitiative() {
+    console.log(initiativeRef);
+    if (initiativeRef) {
+      initiativeRef.addEntities(npcList); // Call the child function
+    }
+  }
 
   const newOnChange = (newEntity: any) => {
     let newList = [];
@@ -57,28 +65,30 @@
 <div style={"display: flexBox"}>
   <div class="flex justify-right">
     <Draggable>
-      <Initiative />
+      <Initiative bind:this={initiativeRef}/>
     </Draggable>
   </div>
   <div class="flex justify-center">
-    <Card
-      class="scroll-card flex justify-right"
-      style={"width:auto; height: auto"}
-    >
-      <!-- Dropdown Menu -->
-      <div class="mb-4 min-w-[400px]">
-        <h1 class="pt-5 text-center font-bold text-xl">
-          Add an Entity to Combat
-        </h1>
-        <div class="flex justify-center">
-          <EntitySelector onChange={newOnChange} />
+    <Draggable left={800}>
+      <Card
+        class="scroll-card flex justify-right"
+        style={"width:auto; height: auto"}
+      >
+      <Button class="fantasy-btn-xl fantasy-dark-blue" onclick={() => pushNpcListToInitiative()}>Port Monsters</Button>
+        <!-- Dropdown Menu -->
+        <div class="mb-4 min-w-[400px]">
+          <h1 class="pt-5 text-center font-bold text-xl">
+            Add an Entity to Combat
+          </h1>
+          <div class="flex justify-center">
+            <EntitySelector onChange={newOnChange} />
+          </div>
         </div>
-      </div>
-      <div class="flex flex-wrap gap-4 justify-center p-4">
-        {#each npcList as npc, index}
-          {#key npc.id}
-            <div>
-              <!-- <XCircleIcon
+        <div class="flex flex-wrap gap-4 justify-center p-4">
+          {#each npcList as npc, index}
+            {#key npc.id}
+              <div>
+                <!-- <XCircleIcon
                 class="cursor-pointer justify-right text-red-500 hover:text-red-700 w-6 h-6 ml-4"
                 onclick={() => {
                   // Remove the entity from the list
@@ -86,14 +96,19 @@
                 }}
               /> -->
 
-              <Monster {npc} {index} remove={() => {
-                npcList = npcList.filter((_, i) => i !== index);
-              }} />
-            </div>
-          {/key}
-        {/each}
-      </div>
-    </Card>
+                <Monster
+                  {npc}
+                  {index}
+                  remove={() => {
+                    npcList = npcList.filter((_, i) => i !== index);
+                  }}
+                />
+              </div>
+            {/key}
+          {/each}
+        </div>
+      </Card></Draggable
+    >
   </div>
 </div>
 

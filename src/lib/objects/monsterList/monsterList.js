@@ -6,6 +6,14 @@ export const mosnterList = {
         hp: 25,
         ac: 15,
         movement: "30 Ft.",
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         actions: {
             ExtraAttack: {
                 description: "The skeleton soldier makes two physical attacks.",
@@ -31,6 +39,14 @@ export const mosnterList = {
         img: "/skeletonMage.png",
         hp: 20,
         ac: 10,
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         description: "A skeleton with a staff and a spellbook. Effectively a 5th level wizard.",
         movement: "30 Ft.",
         actions: {
@@ -54,6 +70,14 @@ export const mosnterList = {
         img: "/zaldara.png",
         hp: 235,
         ac: 17,
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         description: "Zaldara the duchess of rot, is a powerful undead sorceress, with the stats of a Lich",
         movement: "30 Ft.",
         saving_throws: "Con + 10, Int +12, Wis +9",
@@ -85,6 +109,14 @@ export const mosnterList = {
         img: "/fleshGolem.png", // Replace with the actual image path
         hp: 93,
         ac: 9,
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         description: "A lumbering mass of stitched-together body parts, animated by dark magic.",
         movement: "30 Ft.",
         saving_throws: "Str +4, Con +5",
@@ -110,6 +142,14 @@ export const mosnterList = {
         img: "/skeletonKnight.png", // Replace with the actual image path
         hp: 75, // Increased hit points for a tougher challenge
         ac: 18, // Plate armor and shield
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         description: "A fearsome undead warrior clad in ancient armor, wielding a longsword and shield. The Skeleton Knight is a relentless foe, driven by dark magic to protect its master or domain.",
         movement: "30 Ft.",
         saving_throws: "Str +5, Con +4, Wis +2",
@@ -152,6 +192,14 @@ export const mosnterList = {
         description: "A shimmering, gelatinous creature that clings to ceilings and walls, waiting to ambush unsuspecting prey. Its glittering surface reflects light, making it appear harmless until it strikes.",
         movement: "10 Ft., climb 10 Ft.",
         saving_throws: "Con +3",
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         senses: "darkvision 60ft, passive perception 10",
         actions: {
             Pseudopod: {
@@ -185,6 +233,14 @@ export const mosnterList = {
         description: "A more powerful and cunning undead creature, these ghouls are faster, stronger, and more dangerous than their lesser kin. They hunger for the flesh of the living and are driven by dark magic.",
         movement: "30 Ft.",
         saving_throws: "Dex +3, Con +4",
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         senses: "darkvision 60ft, passive perception 10",
         actions: {
             Multiattack: {
@@ -224,6 +280,14 @@ export const mosnterList = {
         description: "A writhing mass of undead spiders, their decaying bodies animated by dark magic. The swarm moves as one, overwhelming its prey with venomous bites and necrotic energy.",
         movement: "20 Ft., climb 20 Ft.",
         saving_throws: "Dex +3, Con +2",
+        attributes: {
+            strength: 14,
+            dexterity: 10,
+            constitution: 15,
+            intelligence: 6,
+            wisdom: 8,
+            charisma: 5,
+        },
         senses: "darkvision 60ft, passive perception 10",
         actions: {
             Bite: {

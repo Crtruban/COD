@@ -9,9 +9,22 @@
 
     let entityList: Entity[] = $state([mosnterList.fleshGolem]);
 
+    export function addEntities(entities: Entity[]) {
+        
+        const updatedList = [...entityList];
+        entities.forEach((entity) => {
+            let { attributes: { dexterity = 10 }} = entity;
+            updatedList.push({
+                ...entity,
+                id: crypto.randomUUID(), // Ensure unique IDs
+                initiative: Math.floor(Math.random() * 20) + 1 + ( (entity.attributes.dexterity - 10) / 2), // Assign random initiative
+            });
+        });
+        entityList = updatedList; // Update the entityList
+    }
+
     const onChange = (newEntity: Entity) => {
         let newList = [];
-        console.table(entityList);
         entityList.map((x) => newList.push(x));
         newList.push({
             ...newEntity,
@@ -20,8 +33,8 @@
         });
         entityList = [...newList];
         newInitiative = null;
-        console.table(entityList);
     };
+
 
     let newInitiative: any = $state();
 
@@ -105,7 +118,10 @@
                         role="listitem"
                         class="flex item p-2 bg-gray-100 rounded-lg mb-2 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
-                        <InitiativeChip {entity} />
+                        <InitiativeChip {entity} initiativeChange={(newVal: Entity) => {
+                            entityList[index].initiative = newVal;
+                            console.log(entityList[index])
+                        }} />
                         <XCircleIcon
                             class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-4"
                             onclick={() => {

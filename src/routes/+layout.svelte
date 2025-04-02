@@ -89,7 +89,9 @@
         },
     ];
 </script>
-
+<svelte:head>
+    <title>Dungeon Mastering for Dummies</title>
+</svelte:head>
 <nav class="navBar">
     {#each chapters as chapter, index}
         <a class="drop-down-hover" href="/{chapter.url}">{chapter.title}</a>
