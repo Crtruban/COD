@@ -7,34 +7,44 @@
     import { ArrowDown, ArrowUp, XCircleIcon } from "@lucide/svelte/icons";
     import Button from "../button/button.svelte";
 
-    let entityList: Entity[] = $state([mosnterList.fleshGolem]);
+    let entityList: Entity[] = $state([]);
 
     export function addEntities(entities: Entity[]) {
-        
         const updatedList = [...entityList];
         entities.forEach((entity) => {
-            let { attributes: { dexterity = 10 }} = entity;
+            let {
+                attributes: { dexterity = 10 },
+            } = entity;
+            let d20 = Math.floor(Math.random() * 20);
+            let mod = Math.floor((dexterity - 10) / 2);
+            let initiative = Math.floor(d20 + 1 + mod); // Assign random initiative
             updatedList.push({
                 ...entity,
                 id: crypto.randomUUID(), // Ensure unique IDs
-                initiative: Math.floor(Math.random() * 20) + 1 + ( (entity.attributes.dexterity - 10) / 2), // Assign random initiative
+                initiative: initiative > 0 ? initiative : 1,
             });
         });
         entityList = updatedList; // Update the entityList
     }
 
     const onChange = (newEntity: Entity) => {
+        console.log(newEntity);
+        let {
+            attributes: { dexterity = 10 },
+        } = newEntity;
         let newList = [];
+        let d20 = Math.floor(Math.random() * 20);
+        let mod = Math.floor((dexterity - 10) / 2);
+        let initiative = Math.floor(d20 + 1 + mod); // Assign random initiative
         entityList.map((x) => newList.push(x));
         newList.push({
             ...newEntity,
             id: crypto.randomUUID(),
-            initiative: newInitiative,
+            initiative: initiative > 0 ? initiative : 1,
         });
         entityList = [...newList];
         newInitiative = null;
     };
-
 
     let newInitiative: any = $state();
 
@@ -79,34 +89,15 @@
                     (a, b) => b.initiative - a.initiative,
                 );
             }}
-            class="font-bold">Sort Initiatives</Button
+            class="fantasy-btn-xl bg-color-[white] fantasy-dark-blue transition-transform duration-300 ease-in-out hover:scale-150"
+            >Sort Initiatives</Button
         >
     </div>
-    <div class="col-span-4">
-        <span class="flex justify-right pl-[6.5%] col-span-3">
-            <input
-            class="flex w-[15%] h-[50px] text-xl text-center"
-            value={newInitiative}
-            type="number"
-            max="99"
-            min="0"
-            oninput={(e: Event) => {
-                let inputElement = e.target as HTMLInputElement;
-                if (inputElement.value.length > 2) {
-                    inputElement.value = inputElement.value.slice(0, 2); // Limit to 2 digits
-                }
-                newInitiative = parseInt(inputElement.value || "0", 10);
-            }}
-            onchange={(e: Event) => {
-                let newVal = parseInt((e.target as HTMLInputElement)?.value || "0", 10);
-                if (-1 < newVal && newVal < 100) {
-                    newInitiative = newVal;
-                }
-            }}
-        />
 
+    <div class="col-span-4">
+        <span class="flex justify-center pl-[6.5%] col-span-3">
             &nbsp; &nbsp;
-            <EntitySelector {onChange} disabled={newInitiative==null} />
+            <EntitySelector {onChange} />
         </span>
     </div>
     <div class="flex">
@@ -118,10 +109,12 @@
                         role="listitem"
                         class="flex item p-2 bg-gray-100 rounded-lg mb-2 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
-                        <InitiativeChip {entity} initiativeChange={(newVal: Entity) => {
-                            entityList[index].initiative = newVal;
-                            console.log(entityList[index])
-                        }} />
+                        <InitiativeChip
+                            {entity}
+                            initiativeChange={(newVal: Entity) => {
+                                entityList[index].initiative = newVal;
+                            }}
+                        />
                         <XCircleIcon
                             class="cursor-pointer text-red-500 hover:text-red-700 w-6 h-6 ml-4"
                             onclick={() => {

@@ -114,6 +114,54 @@
                     </span>
                 {/each}
             </span>
+            <span class="flex-row pb-20">
+                <Card>
+                    <div class="text-center w-full">
+                        <h5
+                            class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                        >
+                            Saving Throws NYI
+                        </h5>
+                        
+                    </div>
+                </Card>
+            </span>
+            <span>
+                <Card>
+                    <h5
+                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                >
+                    Actions NYI
+                </h5>
+                </Card>
+            </span>
+            <span>
+                <Card>
+                    <h5
+                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                >
+                    Spells NYI
+                </h5>
+                </Card>
+            </span>
+            <span>
+                <Card>
+                    <h5
+                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                >
+                    Traits/Features NYI
+                </h5>
+                </Card>
+            </span>
+            <span>
+                <Card>
+                    <h5
+                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                >
+                    Resistances/Skills NYI
+                </h5>
+                </Card>
+            </span>
         </div>
 
         <!-- Image Section -->

@@ -74,8 +74,15 @@
         class="scroll-card flex justify-right"
         style={"width:auto; height: auto"}
       >
-      <Button class="fantasy-btn-xl fantasy-dark-blue" onclick={() => pushNpcListToInitiative()}>Port Monsters</Button>
-        <!-- Dropdown Menu -->
+      <div class="flex justify-center items-center mb-4">
+        <Button
+          class="w-40 justify-center fantasy-btn-xl fantasy-dark-blue"
+          onclick={() => pushNpcListToInitiative()}
+        >
+          Port Monsters
+        </Button>
+      </div>
+       <!-- Dropdown Menu -->
         <div class="mb-4 min-w-[400px]">
           <h1 class="pt-5 text-center font-bold text-xl">
             Add an Entity to Combat
