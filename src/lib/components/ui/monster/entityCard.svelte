@@ -1,12 +1,7 @@
 <script lang="ts">
     import { Card } from "flowbite-svelte";
     import { slide } from "svelte/transition";
-    import SavingThrows from "./entity_card_components/saving_throws.svelte";
-    import ResistancesSkills from "./entity_card_components/resistances_skills.svelte";
-    import Actions from "./entity_card_components/actions.svelte";
-    import Spells from "./entity_card_components/spells.svelte";
-    import TraitsFeatures from "./entity_card_components/trait_features.svelte";
-    import TraitFeatures from "./entity_card_components/trait_features.svelte";
+    import { SavingThrows, ResistancesSkills, Actions, Spells, TraitFeatures } from "./entity_card_components";
     let {
         npc = {
             img: "",
