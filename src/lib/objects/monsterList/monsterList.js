@@ -2,6 +2,7 @@ import { spellList } from "../spellList/spellList"
 export const mosnterList = {
     skeletonSoldier: {
         name: "Skeleton Soldier",
+        is_player: false,
         img: "/skeleton.png",
         hp: 25,
         ac: 15,
@@ -36,6 +37,7 @@ export const mosnterList = {
     },
     skeletonMage: {
         name: "Skeleton Mage",
+        is_player: false,
         img: "/skeletonMage.png",
         hp: 20,
         ac: 10,
@@ -106,6 +108,7 @@ export const mosnterList = {
     },
     fleshGolem: {
         name: "Flesh Golem",
+        is_player: false,
         img: "/fleshGolem.png", // Replace with the actual image path
         hp: 93,
         ac: 9,
@@ -139,6 +142,7 @@ export const mosnterList = {
     },
     skeletonKnight: {
         name: "Skeleton Knight",
+        is_player: false,
         img: "/skeletonKnight.png", // Replace with the actual image path
         hp: 75, // Increased hit points for a tougher challenge
         ac: 18, // Plate armor and shield
@@ -186,6 +190,7 @@ export const mosnterList = {
     },
     glitteringOoze: {
         name: "Glittering Ooze",
+        is_player: false,
         img: "/glitteringOoze.png", // Replace with the actual image path
         hp: 85, // Hit points for a challenging ooze
         ac: 8, // Oozes typically have low AC
@@ -227,6 +232,7 @@ export const mosnterList = {
     },
     ghoul: {
         name: "Enhanced Ghoul",
+        is_player: false,
         img: "/enhancedGhoul.png", // Replace with the actual image path
         hp: 52, // Increased hit points for a tougher challenge
         ac: 14, // Natural armor
@@ -274,6 +280,7 @@ export const mosnterList = {
     },
     rottingSpiderSwarm: {
         name: "Rotting Spider Swarm",
+        is_player: false,
         img: "/rottingSpiderSwarm.png", // Replace with the actual image path
         hp: 36, // Swarm creatures typically have lower HP
         ac: 12, // Natural armor

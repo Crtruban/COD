@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Card } from "flowbite-svelte";
     import { slide } from "svelte/transition";
-    import { XCircleIcon } from "@lucide/svelte";
+    import SavingThrows from "./entity_card_components/saving_throws.svelte";
     let {
         npc = {
             img: "",
@@ -24,7 +24,8 @@
         remove = () => {},
     } = $props();
 
-    let hoverCss = "transition-transform duration-300 ease-in-out hover:scale-150"
+    let hoverCss =
+        "transition-transform duration-300 ease-in-out hover:scale-150";
 
     let collapse = $state(false);
     let spellCollapse = $state(false);
@@ -52,21 +53,16 @@
         <!-- Primary Stats Section -->
         <div class="flex flex-col gap-4 items-start">
             <!-- Individual Stat -->
-            {#each [
-                { label: "STR", value: npc.attributes.strength },
-                { label: "DEX", value: npc.attributes.dexterity },
-                { label: "CON", value: npc.attributes.constitution },
-                { label: "INT", value: npc.attributes.intelligence },
-                { label: "WIS", value: npc.attributes.wisdom },
-                { label: "CHA", value: npc.attributes.charisma }
-            ] as stat}
+            {#each [{ label: "STR", value: npc.attributes.strength }, { label: "DEX", value: npc.attributes.dexterity }, { label: "CON", value: npc.attributes.constitution }, { label: "INT", value: npc.attributes.intelligence }, { label: "WIS", value: npc.attributes.wisdom }, { label: "CHA", value: npc.attributes.charisma }] as stat}
                 <Card
                     class="flex flex-col items-center justify-center w-[70px] text-center {hoverCss}"
                 >
                     <h6 class="text-lg font-bold text-gray-900 dark:text-white">
                         {stat.label}
                     </h6>
-                    <span class="text-2xl font-extrabold text-gray-900 dark:text-white">
+                    <span
+                        class="text-2xl font-extrabold text-gray-900 dark:text-white"
+                    >
                         {getMod(stat.value) > 0 ? "+" : ""}{getMod(stat.value)}
                     </span>
                     <span
@@ -88,11 +84,7 @@
             </h5>
             <!-- Health Section -->
             <span class="flex pl-24 flex-row gap-4">
-                {#each [
-                    { label: "Health", value: npc.hp },
-                    { label: "AC", value: npc.ac },
-                    { label: "Movement", value: npc.movement }
-                ] as major}
+                {#each [{ label: "Health", value: npc.hp }, { label: "AC", value: npc.ac }, { label: "Movement", value: npc.movement }] as major}
                     <span
                         class="text-center flex items-center justify-center p-2"
                     >
@@ -115,51 +107,53 @@
                 {/each}
             </span>
             <span class="flex-row pb-20">
+                <span class="dwindling-border rounded"></span>
+                <div class="text-center w-full">
+                    <h5
+                        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                    >
+                        <SavingThrows />
+                    </h5>
+                </div>
+            </span>
+            <span>
+                <span class="dwindling-border rounded"></span>
                 <Card>
-                    <div class="text-center w-full">
-                        <h5
-                            class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-                        >
-                            Saving Throws NYI
-                        </h5>
-                        
-                    </div>
+                    <h5
+                        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                    >
+                        Actions NYI
+                    </h5>
                 </Card>
             </span>
             <span>
+                <span class="dwindling-border rounded"></span>
                 <Card>
                     <h5
-                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-                >
-                    Actions NYI
-                </h5>
+                        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                    >
+                        Spells NYI
+                    </h5>
                 </Card>
             </span>
             <span>
+                <span class="dwindling-border rounded"></span>
                 <Card>
                     <h5
-                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-                >
-                    Spells NYI
-                </h5>
+                        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                    >
+                        Traits/Features NYI
+                    </h5>
                 </Card>
             </span>
             <span>
+                <span class="dwindling-border rounded"></span>
                 <Card>
                     <h5
-                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-                >
-                    Traits/Features NYI
-                </h5>
-                </Card>
-            </span>
-            <span>
-                <Card>
-                    <h5
-                    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-                >
-                    Resistances/Skills NYI
-                </h5>
+                        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
+                    >
+                        Resistances/Skills NYI
+                    </h5>
                 </Card>
             </span>
         </div>
@@ -176,3 +170,17 @@
         {/if}
     </div>
 </Card>
+
+<style>
+    .dwindling-border {
+        display: block;
+        height: 7px; /* Thickness of the border */
+        width: 100%; /* Full width of the parent container */
+        background: linear-gradient(
+            to right,
+            rgb(141, 2, 2),
+            transparent
+        ); /* Gradient from red to transparent */
+        
+    }
+</style>
