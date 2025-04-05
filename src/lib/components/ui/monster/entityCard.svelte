@@ -2,6 +2,11 @@
     import { Card } from "flowbite-svelte";
     import { slide } from "svelte/transition";
     import SavingThrows from "./entity_card_components/saving_throws.svelte";
+    import ResistancesSkills from "./entity_card_components/resistances_skills.svelte";
+    import Actions from "./entity_card_components/actions.svelte";
+    import Spells from "./entity_card_components/spells.svelte";
+    import TraitsFeatures from "./entity_card_components/trait_features.svelte";
+    import TraitFeatures from "./entity_card_components/trait_features.svelte";
     let {
         npc = {
             img: "",
@@ -116,45 +121,45 @@
                     </h5>
                 </div>
             </span>
-            <span>
+            <span class="flex-row pb-20">
                 <span class="dwindling-border rounded"></span>
-                <Card>
+                <div class="text-center w-full">
                     <h5
                         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
                     >
-                        Actions NYI
+                        <Actions />
                     </h5>
-                </Card>
+                </div>
             </span>
-            <span>
+            <span class="flex-row pb-20">
                 <span class="dwindling-border rounded"></span>
-                <Card>
+                <div class="text-center w-full">
                     <h5
                         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
                     >
-                        Spells NYI
+                        <Spells />
                     </h5>
-                </Card>
+                </div>
             </span>
-            <span>
+            <span class="flex-row pb-20">
                 <span class="dwindling-border rounded"></span>
-                <Card>
+                <div class="text-center w-full">
                     <h5
                         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
                     >
-                        Traits/Features NYI
+                        <TraitFeatures />
                     </h5>
-                </Card>
+                </div>
             </span>
-            <span>
+            <span class="flex-row pb-20">
                 <span class="dwindling-border rounded"></span>
-                <Card>
+                <div class="text-center w-full">
                     <h5
                         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
                     >
-                        Resistances/Skills NYI
+                        <ResistancesSkills />
                     </h5>
-                </Card>
+                </div>
             </span>
         </div>
 
