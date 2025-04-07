@@ -122,7 +122,7 @@
                     <h5
                         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
                     >
-                        <Actions />
+                        <Actions  {npc}/>
                     </h5>
                 </div>
             </span>

@@ -13,7 +13,7 @@
         Droplet,
         Sparkle,
     } from "@lucide/svelte/icons";
-
+    import DiceRoll from "$lib/components/ui/modal/diceRoll.svelte";
     import * as Sidebar from "$lib/components/ui/sidebar/index.js";
     import AppSidebar from "$lib/components/app-sidebar.svelte";
     import { Divide, MapIcon } from "@lucide/svelte/icons";
@@ -92,6 +92,7 @@
 <svelte:head>
     <title>Dungeon Mastering for Dummies</title>
 </svelte:head>
+
 <nav class="navBar">
     {#each chapters as chapter, index}
         <a class="drop-down-hover" href="/{chapter.url}">{chapter.title}</a>
@@ -129,6 +130,8 @@
 
     <a class="drop-down-hover" href="/end">Wrapup</a>
 </nav>
+
+<DiceRoll/>
 
 <Modal
     title="Map"

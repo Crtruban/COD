@@ -56,8 +56,6 @@
         <input
             value={entity.initiative}
             oninput={(e: Event) => {
-                console.log(e.target.value)
-                console.log(entity.initiative)
                 updateInitiative(parseInt(e.target.value))}}
             class="max-w-[60px] h-[50px] text-xl text-center border border-gray-300 rounded-lg"
         />

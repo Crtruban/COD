@@ -21,13 +21,13 @@ export const mosnterList = {
             },
             Longsword: {
                 type: "Melee",
-                Attack: "+4",
+                attack: "+4",
                 damage: "1d8+4 (6)",
                 description: "Slashing Damage",
             },
             Shortbow: {
                 type: "Ranged",
-                Attack: "+4",
+                attack: "+4",
                 damage: "1d6+6 (33)",
                 description: "Piercing Damage",
             },
@@ -54,12 +54,13 @@ export const mosnterList = {
         actions: {
             Firebolt: {
                 type: "Ranged",
+                attack: "+3",
                 damage: "1d8+4 (6)",
                 description: "Slashing Damage",
             },
             Quarterstaff: {
                 type: "Ranged",
-                Attack: "0",
+                attack: "0",
                 damage: "1d8 (4)",
                 description: "Blunt Damage",
             },
@@ -92,7 +93,7 @@ export const mosnterList = {
             },
             Quarterstaff: {
                 type: "Ranged",
-                Attack: "0",
+                attack: "0",
                 damage: "1d8 (4)",
                 description: "Blunt Damage",
             },
@@ -127,7 +128,7 @@ export const mosnterList = {
         actions: {
             Slam: {
                 type: "Melee",
-                Attack: "+7",
+                attack: "+7",
                 damage: "2d8+4 (13)",
                 description: "Bludgeoning Damage",
             },
@@ -164,13 +165,13 @@ export const mosnterList = {
             },
             Longsword: {
                 type: "Melee",
-                Attack: "+6",
+                attack: "+6",
                 damage: "1d8+4 (8) slashing damage, or 1d10+4 (9) slashing damage if used with two hands.",
                 description: "A powerful melee attack with its longsword.",
             },
             ShieldBash: {
                 type: "Melee",
-                Attack: "+6",
+                attack: "+6",
                 damage: "1d6+2 (5) bludgeoning damage",
                 description: "If the target is a creature, it must succeed on a DC 14 Strength saving throw or be knocked prone.",
             },
@@ -209,7 +210,7 @@ export const mosnterList = {
         actions: {
             Pseudopod: {
                 type: "Melee",
-                Attack: "+5",
+                attack: "+5",
                 damage: "2d8+3 (12) bludgeoning damage plus 1d8 acid damage",
                 description: "The ooze lashes out with a pseudopod, dealing bludgeoning and acid damage.",
             },
@@ -254,13 +255,13 @@ export const mosnterList = {
             },
             Bite: {
                 type: "Melee",
-                Attack: "+5",
+                attack: "+5",
                 damage: "2d6+2 (9) piercing damage",
                 description: "The ghoul bites its target, dealing piercing damage.",
             },
             Claws: {
                 type: "Melee",
-                Attack: "+5",
+                attack: "+5",
                 damage: "2d4+2 (7) slashing damage",
                 description: "If the target is a creature other than an undead, it must succeed on a DC 12 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
             },
@@ -299,7 +300,7 @@ export const mosnterList = {
         actions: {
             Bite: {
                 type: "Melee",
-                Attack: "+5",
+                attack: "+5",
                 damage: "4d4 (10) piercing damage plus 2d6 (7) necrotic damage",
                 description: "The swarm bites all creatures in its space, dealing piercing and necrotic damage.",
             },
