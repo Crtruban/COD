@@ -1,13 +1,10 @@
 <script lang="ts">
     import { Card } from "flowbite-svelte";
-    import { displayRoll, rollType, showRoll } from "$lib/rollStore";
+    import {  rollType, showRoll } from "$lib/rollStore";
     import { onDestroy } from "svelte";
 
-    let {
-        rollDice = () => {
-            return Math.floor(Math.random() * 20) + 1; // Roll a d20
-        },
-    } = $props();
+    
+    let rollDice = () => {};
 
     let opacity = $state(0);
     let overAllOpacity = $state(1);
@@ -23,15 +20,19 @@
 
     $effect(() => {
         if (showModal) {
+            console.log( handleRoll())
             dialog.showModal();
         }
     });
 
     let dialog = $state(); // HTMLDialogElement
     let showModal = $state(false);
+
+    const unsubscribeRoll = rollType.subscribe((value) => (rollDice = value));
     const unsubscribe = showRoll.subscribe((value) => (showModal = value));
 
     onDestroy(unsubscribe);
+    onDestroy(unsubscribeRoll);
 
     // $effect(() => {
     //     setTimeout(() => {
@@ -45,7 +46,7 @@
     onclose={() => (showModal = false)}
     onclick={(e) => {
         if (e.target === dialog) {
-            
+            opacity = 0;
             showRoll.set(false);
             dialog.close();
         }
@@ -63,12 +64,13 @@
                         src="/d20.jpg"
                         alt="Dice Rolling"
                     />
-                    <span
-                        class="overflow-hidden absolute inset-0 flex opacity-{opacity} items-center justify-center text-black font-bold text-[24px] pt-1 animate-fade-in-slow"
-                    >
-                        {handleRoll()}
-                    </span>
-                </div></Card>
+                    
+                </div>
+                <span
+                class="overflow-hidden absolute inset-0 flex opacity-{opacity} items-center justify-center text-black font-bold text-[24px] pt-1 animate-fade-in-slow"
+            >
+                {handleRoll()}
+            </span></Card>
         {/if}
         <hr />
         <!-- svelte-ignore a11y_autofocus -->

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Dice5, Sword } from "@lucide/svelte";
-    import { displayRoll, showRoll, rollType, setRoll } from "$lib/rollStore";
+    import {  showRoll, rollType } from "$lib/rollStore";
     import Button from "../../button/button.svelte";
     let {
         npc = {
@@ -18,10 +18,10 @@
             actions: {},
         },
     } = $props();
-    let fakeRolle = $state(20);
     function isEmptyOrUndefined(property:any) {
         return property === undefined || property === null || property === "";
     }
+
 </script>
 
 <!--HTML-->
@@ -43,9 +43,8 @@
                 <!-- Dice Icon with Label -->
                  {#if !isEmptyOrUndefined(npc.actions[action_key].attack)}
                 <Button onclick={() => {
-                    console.log(showRoll);
                     showRoll.set(true);
-                    console.log(showRoll);
+                    rollType.set(() => -20);
 
                 }} class="flex items-center gap-1 fantasy-btn-sm bg-color-[white] fantasy-bone-n-coper transition-transform duration-300 ease-in-out hover:scale-150">
                    
