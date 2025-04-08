@@ -47,7 +47,7 @@
 </script>
 
 <Card
-    class="cursor-default overflow-x-hidden min-w-[850px] min-h-[800px] bg-scroll-parchment bg-cover bg-no-repeat shadow-lg rounded-lg border border-yellow-700 p-6 flex flex-col gap-4"
+    class="cursor-default overflow-x-hidden min-w-[1000px] min-h-[800px] bg-scroll-parchment bg-cover bg-no-repeat shadow-lg rounded-lg border border-yellow-700 p-6 flex flex-col gap-4"
 >
     <div class="flex flex-row items-start w-full gap-6 justify-between">
         <!-- Primary Stats Section -->
@@ -178,7 +178,7 @@
         width: 100%; /* Full width of the parent container */
         background: linear-gradient(
             to right,
-            rgb(141, 2, 2),
+            rgb(82, 2, 2),
             transparent
         ); /* Gradient from red to transparent */
         

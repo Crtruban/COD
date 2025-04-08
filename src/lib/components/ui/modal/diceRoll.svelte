@@ -11,10 +11,10 @@
     function handleRoll() {
         setTimeout(() => {
             opacity = 1;
-        }, 2000); // Delay for 1 second before showing the result
+        }, 1000); // Delay for 1 second before showing the result
         setTimeout(() => {
             overAllOpacity = 0;
-        }, 5000); // Delay for 1 second before showing the result
+        }, 2500); // Delay for 1 second before showing the result
         return rollDice(); // Roll a d20
     }
 
@@ -88,7 +88,7 @@
     }
 
     .animate-spin-once {
-        animation: spin-once 2s ease-in-out; /* Spins once over 1 second */
+        animation: spin-once 1s ease-in-out; /* Spins once over 1 second */
     }
 
     @keyframes fade-in {
@@ -101,9 +101,9 @@
     }
 
     .animate-fade-in {
-        animation: fade-in 1s ease-in-out 1s forwards; /* Fades in after 1 second */
+        animation: fade-in .5s ease-in-out .5s forwards; /* Fades in after 1 second */
     }
     .animate-fade-in-slow {
-        animation: fade-in 2s ease-in-out 2s forwards; /* Fades in after 1 second */
+        animation: fade-in 1s ease-in-out 1s forwards; /* Fades in after 1 second */
     }
 </style>
