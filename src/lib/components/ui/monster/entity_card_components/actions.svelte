@@ -31,10 +31,7 @@
     <h5
         class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
     >
-        Actions <button onclick={() => {
-            fakeRolle = 0;
-            fakeRolle = 20
-        }}>Test</button>
+        Actions
     </h5>
     <span class="flex-row pb-20">
         {#each Object.keys(npc.actions) as action_key}
@@ -47,7 +44,7 @@
                  {#if !isEmptyOrUndefined(npc.actions[action_key].attack)}
                 <Button onclick={() => {
                     console.log(showRoll);
-                    showRoll.update(() => true);
+                    showRoll.set(true);
                     console.log(showRoll);
 
                 }} class="flex items-center gap-1 fantasy-btn-sm bg-color-[white] fantasy-bone-n-coper transition-transform duration-300 ease-in-out hover:scale-150">
