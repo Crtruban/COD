@@ -79,7 +79,10 @@
                 {name}
             </h2>
         {/snippet}
-        <EntityCard npc={foundEntity}/>
+        <span class="overflow-x-hidden w-[1100px]">
+
+       
+        <EntityCard  npc={foundEntity}/> </span>
         <!-- <img
             src={image}
             alt={name ? `${name}'s image` : "Image of the entity"}

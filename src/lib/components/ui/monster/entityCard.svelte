@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Card } from "flowbite-svelte";
     import { slide } from "svelte/transition";
+    import { showRoll, rollType, setDiceRoll } from "$lib/rollStore";
     import { SavingThrows, ResistancesSkills, Actions, Spells, TraitFeatures } from "./entity_card_components";
     let {
         npc = {
@@ -56,6 +57,9 @@
             {#each [{ label: "STR", value: npc.attributes.strength }, { label: "DEX", value: npc.attributes.dexterity }, { label: "CON", value: npc.attributes.constitution }, { label: "INT", value: npc.attributes.intelligence }, { label: "WIS", value: npc.attributes.wisdom }, { label: "CHA", value: npc.attributes.charisma }] as stat}
                 <Card
                     class="flex flex-col items-center justify-center w-[70px] text-center {hoverCss}"
+                    onclick={() => {
+                        setDiceRoll(1,20, getMod(stat.value) || 0);
+                    }}
                 >
                     <h6 class="text-lg font-bold text-gray-900 dark:text-white">
                         {stat.label}

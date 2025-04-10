@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Card } from "flowbite-svelte";
-    import {  rollType, showRoll } from "$lib/rollStore";
+    import {  rollType, showRoll, rollResult, rollModifier, rollCalculation } from "$lib/rollStore";
     import { onDestroy } from "svelte";
 
     
@@ -24,15 +24,24 @@
             dialog.showModal();
         }
     });
-
+    let rollCalcul = $state(0);
     let dialog = $state(); // HTMLDialogElement
     let showModal = $state(false);
+    let rollResults = $state(0);
+    let rollModifiers = $state(0);
+
+    const unsubscribeCalc = rollCalculation.subscribe((value) => (rollCalcul = value));
+    const unsubscribeResult = rollResult.subscribe((value) => (rollResults = value));
+    const unsubscribeModifier = rollModifier.subscribe((value) => (rollModifiers = value));
 
     const unsubscribeRoll = rollType.subscribe((value) => (rollDice = value));
     const unsubscribe = showRoll.subscribe((value) => (showModal = value));
 
     onDestroy(unsubscribe);
     onDestroy(unsubscribeRoll);
+    onDestroy(unsubscribeResult);
+    onDestroy(unsubscribeModifier);
+    onDestroy(unsubscribeCalc);
 
     // $effect(() => {
     //     setTimeout(() => {
@@ -55,7 +64,7 @@
     <div>
         <hr />
         {#if showModal}
-        <Card class="border-double">
+        <Card class="border-4 border-yellow-500 border-double text-center">
                 <div
                     class="relative w-30 h-30 opacity-0 animate-fade-in overflow-hidden"
                 >
@@ -67,10 +76,20 @@
                     
                 </div>
                 <span
-                class="overflow-hidden absolute inset-0 flex opacity-{opacity} items-center justify-center text-black font-bold text-[24px] pt-1 animate-fade-in-slow"
+                class="overflow-hidden absolute inset-0 flex opacity-{opacity} items-center justify-center text-black font-bold text-[24px] pb-16 animate-fade-in-slow"
             >
-                {handleRoll()}
-            </span></Card>
+                {rollResults + rollModifiers}
+            </span>
+            <span class="pt-2">
+            <Card class="text-center animate-fade-in-slow opacity-{opacity} w-auto h-auto p-0">
+                <span>
+                <span class="w-auto h-auto {rollResults == 20 ? 'font-extrabold text-green-500' : rollResults == 1 ? 'text-red-500 font-extrabold' : ''}">
+                    {rollResults}
+                </span> 
+                + {rollModifiers}</span>
+               
+            </Card> <span class="text-center font-thin italic animate-fade-in-slow opacity-{opacity}">{rollCalcul}</span></span>
+        </Card>
         {/if}
         <hr />
         <!-- svelte-ignore a11y_autofocus -->

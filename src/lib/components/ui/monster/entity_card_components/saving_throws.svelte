@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { setDiceRoll } from "$lib/rollStore";
     let {
         npc = {
             is_player: false,
@@ -35,21 +36,17 @@
         if (attr_key == "") return;
         if (is_player) {
             if (saving_throw_prof[attr_key]) {
-                console.log("Here");
                 return (
                     Math.floor((attributes[attr_key] - 10) / 2) +
                     npc.profficiency
                 );
             } else {
-                console.log("Here");
                 return Math.floor((attributes[attr_key] - 10) / 2);
             }
         }
         if (saving_throws[attr_key] > 0) {
-            console.log("Here");
             return saving_throws[attr_key];
         } else {
-            console.log("Here");
             return Math.floor(Math.floor((attributes[attr_key] - 10) / 2));
         }
     }
@@ -63,9 +60,13 @@
     >
         Saving Throws
     </h5>
-    <span class="flex font-serif text-[75%] justify-center">
+    <span class="flex font-serif text-[75%] justify-center gap-x-4">
         {#each Object.entries(npc.saving_throws) as [key, value]}
-            <span class="flex flex-col pr-5">
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
+            <span onclick={() => {
+                setDiceRoll(1, 20, getSave(key) || 0);
+            }} class="transition-transform duration-300 ease-in-out hover:scale-150 border bg-white border-solid hover:scale-[125%] border-[#520202] text-center flex flex-col items-center justify-center pr-5 rounded">
                 <span class="flex-row">
                     {key.substring(0, 3).toUpperCase()}
                 </span>

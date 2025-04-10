@@ -9,7 +9,7 @@
 	scale,
 	slide
 } from 'svelte/transition';
-    import { showRoll, rollType } from "$lib/rollStore";
+    import { setDiceRoll } from "$lib/rollStore";
     import Button from "../../button/button.svelte";
     let {
         npc = {
@@ -38,7 +38,6 @@
         const damageRegex = /((\d+)d(\d+))([+-]?)(\d+)?/;
         const match = damageString.match(damageRegex);
         if (match) {
-            console.log(match);
             const [
                 fullMatch,
                 dice,
@@ -47,13 +46,11 @@
                 operator,
                 modifier,
             ] = match;
-            const damageFunction = () =>
-                Math.floor(
-                    Math.random() *
-                        (parseInt(numberOfDice) * parseInt(diceType)),
-                ) +
-                (operator === "+" ? 1 : -1) * parseInt(modifier);
-            return damageFunction;
+            return {
+                numberOfDice: parseInt(numberOfDice),
+                diceType: parseInt(diceType),
+                modifier: (operator === "-" ? -1 : 1) * parseInt(modifier ? modifier : "0")
+            }
         }
     }
 </script>
@@ -92,19 +89,7 @@
                         {#if !isEmptyOrUndefined(npc.actions[action_key].attack)}
                             <Button
                                 onclick={() => {
-                                    showRoll.set(true);
-                                    rollType.set(() => {
-                                        let roll =
-                                            Math.floor(Math.random() * 20) + 1;
-                                        if (roll == 1) {
-                                        } else if (roll == 20) {
-                                        }
-                                        return (
-                                            roll +
-                                                npc.actions[action_key]
-                                                    .attack || 0
-                                        );
-                                    });
+                                    setDiceRoll(1, 20, npc.actions[action_key].attack  || 0);
                                 }}
                                 class="flex items-center gap-1 fantasy-btn-sm bg-color-[white] fantasy-bone-n-coper transition-transform duration-300 ease-in-out hover:scale-150"
                             >
@@ -116,12 +101,12 @@
                         {#if !isEmptyOrUndefined(npc.actions[action_key].damage)}
                             <Button
                                 onclick={() => {
-                                    const damageFn = getDamageFunction(
+                                    const dmgRolls = getDamageFunction(
                                         npc.actions[action_key].damage,
                                     );
-                                    if (damageFn) {
-                                        showRoll.set(true);
-                                        rollType.set(damageFn);
+                                    if (dmgRolls) {
+                                        let { numberOfDice, diceType, modifier } = dmgRolls;
+                                        setDiceRoll(numberOfDice, diceType, modifier || 0);
                                     }
                                 }}
                                 class="flex items-center gap-1 fantasy-btn-sm bg-color-[white] fantasy-bone-n-coper transition-transform duration-300 ease-in-out hover:scale-150"
