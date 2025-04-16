@@ -56,6 +56,7 @@
     onclick={(e) => {
         if (e.target === dialog) {
             opacity = 0;
+            overAllOpacity = 0;
             showRoll.set(false);
             dialog.close();
         }
